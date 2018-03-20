@@ -1,8 +1,8 @@
 {
-  "name": "rrule",
-  "version": "2.2.8",
+  "name": "om-rrule",
+  "version": "2.3.0",
   "description": "JavaScript library for working with recurrence rules for calendar dates.",
-  "homepage": "http://jakubroztocil.github.io/rrule/",
+  "homepage": "https://github.com/openmindlab/rrule",
   "keywords": [
     "dates",
     "recurrences",
@@ -10,11 +10,11 @@
     "icalendar",
     "rfc"
   ],
-  "author": "Jakub Roztocil and Lars Schöning",
+  "author": "Original author Jakub Roztocil and Lars Schöning - Modified by Fabio Tunno",
   "main": "lib/rrule",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jakubroztocil/rrule.git"
+    "url": "https://github.com/openmindlab/rrule"
   },
   "scripts": {
     "test": "standard && mocha"
