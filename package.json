@@ -1,6 +1,6 @@
 {
   "name": "om-rrule",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "JavaScript library for working with recurrence rules for calendar dates.",
   "homepage": "https://github.com/openmindlab/rrule",
   "keywords": [
