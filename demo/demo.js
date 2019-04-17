@@ -132,6 +132,9 @@
       return $code.parents("section:first").find("input").val($code.text()).change();
     });
     $("input, select").on('keyup change', function() {
+      if ( ['between-start', 'between-end', 'reset-by-day', 'use-utc'].indexOf(this.id) > -1 ) {
+        return false;
+      }
       var $in, $section, date, dates, days, e, getDay, html, init, inputMethod, key, makeRule, max, options, rfc, rule, text, v, value, values,
         _this = this;
 
@@ -243,6 +246,56 @@
       return $("#dates").html(html);
     });
     activateTab($tabs.find("a:first"));
+
+
+
+    $('#calc-between').click( (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      let start = new Date( $('#between-start').val() );
+      let end = new Date( $('#between-end').val() );
+
+      let rrule_str = $('#rfc-input-rrule-text').val();
+      const rrule = new RRule( RRule.parseString(rrule_str), true, {resetByDay: $('#reset-by-day').is(':checked'), useUTC: $('#use-utc').is(':checked') })
+
+      const n_start = new Date(start);
+      n_start.setDate( start.getDate() - 1);
+
+      const n_end = new Date(end);
+      n_end.setDate( end.getDate() + 1);
+
+
+      const dates = rrule.all();
+      html = makeRows(dates);
+      $("#dates").html(html);
+
+      const interval = rrule.between( n_start, n_end );
+      // const interval = rrule.between( start, end );
+
+      let res = [];
+
+      const s = new Date( start ), e = new Date(end);
+
+      for( let slot of interval ) {
+        if ( slot.getTime() < s.getTime() || slot.getTime() > e.getTime() ) {
+          continue;
+        }
+        res.push( slot );
+      }
+
+      // res = res.map( (d) => {
+      //   d.setMinutes( d.getMinutes() - ((4 + 2) * 60));
+      //   // return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+      //   return d;
+      // })
+      // .filter( (d) => {
+      //   return [1, 2].indexOf( d.getDay() ) > -1
+      // });
+
+      res.unshift( res.length );
+      $('#between-result').html( res.join('<br />') );
+
+    });
     processHash = function() {
       var arg, hash, match, method;
 

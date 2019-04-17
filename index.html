@@ -394,7 +394,7 @@
 
     <section id="rfc-input">
         <h3><code>RRULE</code> string</h3>
-        <p><input  value="FREQ=DAILY;INTERVAL=2;COUNT=4"/></p>
+        <p><input id="rfc-input-rrule-text" value="COUNT=100;FREQ=MINUTELY;DTSTART=20190331T130000Z;UNTIL=20690430T230000Z;BYDAY=MO,TU;WKST=MO;BYHOUR=13,14,15,16,17,18,19,20,21,22;INTERVAL=45"/></p>
         <p>
             Enter an <code>RRULE</code> as per <a href="http://www.kanzaki.com/docs/ical/rrule.html">iCalendar RFC</a>.
         </p>
@@ -405,6 +405,48 @@
             <li><code>FREQ=DAILY;INTERVAL=3;COUNT=10</code></li>
             <li><code>FREQ=MONTHLY;BYDAY=-2FR;COUNT=7</code></li>
         </ul>
+        <hr />
+        <div id="between" >
+            <h4><code>RRULE</code> between</h4>
+            <p>
+                Enter dates
+            </p>
+            <form>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>date from</th>
+                            <td><input type="datetime-local" id="between-start"/></td>
+                        </tr>
+                        <tr>
+                            <th>date to</th>
+                            <td><input type="datetime-local" id="between-end" /></td>
+                        </tr>
+                        <tr>
+                            <th>reset by day</th>
+                            <td>
+                                <input type="checkbox" id="reset-by-day" checked="checked" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>use UTC</th>
+                            <td>
+                                <input type="checkbox" id="use-utc" checked="checked" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <button id="calc-between">Calculate</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div id="between-result">
+            </div>
+
+        </div>
     </section>
 
 
